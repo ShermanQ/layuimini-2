@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.Dao.trainModelMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.models.trainModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mode_name" property="mode_name" jdbcType="VARCHAR" />
+    <result column="people_name" property="people_name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="VARCHAR" />
+    <result column="dataset_name" property="dataset_name" jdbcType="VARCHAR" />
+    <result column="mail" property="mail" jdbcType="VARCHAR" />
+    <result column="gpu_nums" property="gpu_nums" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mode_name, people_name, phone, date, dataset_name, mail, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from traj.train
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from traj.train
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.models.trainModel" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into traj.train (mode_name, people_name, phone,
+      date, dataset_name, mail, gpu_nums,
+      state)
+    values (#{mode_name,jdbcType=VARCHAR}, #{people_name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+      #{date,jdbcType=VARCHAR}, #{dataset_name,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, #{gpu_nums,jdbcType=INTEGER},
+      #{state,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.models.trainModel" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into traj.train
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mode_name != null" >
+        mode_name,
+      </if>
+      <if test="people_name != null" >
+        people_name,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="dataset_name != null" >
+        dataset_name,
+      </if>
+      <if test="mail != null" >
+        mail,
+      </if>
+      <if test="gpu_nums != null" >
+        gpu_nums,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mode_name != null" >
+        #{mode_name,jdbcType=VARCHAR},
+      </if>
+      <if test="people_name != null" >
+        #{people_name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="dataset_name != null" >
+        #{dataset_name,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="gpu_nums != null" >
+        #{gpu_nums,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.models.trainModel" >
+    update traj.train
+    <set >
+      <if test="mode_name != null" >
+        mode_name = #{mode_name,jdbcType=VARCHAR},
+      </if>
+      <if test="people_name != null" >
+        people_name = #{people_name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="dataset_name != null" >
+        dataset_name = #{dataset_name,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        mail = #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="gpu_nums != null" >
+        #{gpu_nums,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.models.trainModel" >
+    update traj.train
+    set mode_name = #{mode_name,jdbcType=VARCHAR},
+      people_name = #{people_name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      date = #{date,jdbcType=VARCHAR},
+      dataset_name = #{dataset_name,jdbcType=VARCHAR},
+      mail = #{mail,jdbcType=VARCHAR},
+      gpu_nums =  #{gpu_nums,jdbcType=INTEGER},
+      state = #{state,jdbcType=BIT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+    <update id="updateBystate" parameterType="java.lang.Integer" >
+      update traj.train
+      set state = true
+      where id = #{id,jdbcType=VARCHAR}
+    </update>
+</mapper>

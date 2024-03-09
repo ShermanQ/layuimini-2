@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/jq-module/zyupload/zyupload-1.0.0.min.css" media="all">
+    <link rel="stylesheet" href="../lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+</head>
+<style type="text/css">
+    .layui-table-cell {
+        height: 50px;
+        line-height: 50px;
+    }
+</style>
+
+<body>
+    <div class="layuimini-container">
+        <div class="layuimini-main">
+
+            <div id="zyupload" class="zyupload" style="height: 200px;"></div>
+        </div>
+        <fieldset class="table-search-fieldset">
+            <legend>包含信息</legend>
+            <div style="margin: 10px 10px 10px 10px">
+                <form class="layui-form layui-form-pane" action="">
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">视频ID</label>
+                            <!--                            <div class="layui-input-inline">-->
+                            <!--                                <input type="text" name="frame" autocomplete="off" class="layui-input">-->
+                            <!--                            </div>-->
+                        </div>
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">模型名称</label>
+                            <!--                            <div class="layui-input-inline">-->
+                            <!--                                <input type="text" name="mode_name" autocomplete="off" class="layui-input">-->
+                            <!--                            </div>-->
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">识别结果</label>
+                            <!--                            <div class="layui-input-inline">-->
+                            <!--                                <input type="text" name="mode_name" autocomplete="off" class="layui-input">-->
+                            <!--                            </div>-->
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">选择模型</label>
+                            <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
+                                <select name="datasetName" style="margin-left: 0;margin-top: 0">
+                                <option value="">请选择</option>
+                                <option value="ETH"></option>
+                                <option value="Hotel" selected=""></option>
+                                <option value="ETH"></option>
+                                <option value="Hotel"></option>
+                            </select>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+                <!--                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add">选择数据行</button>-->
+                <div class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete">识别结果 </div>
+            </div>
+        </script>
+
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+        <script type="text/html" id="currentTableBar">
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+        </script>
+
+    </div>
+
+    <script src="../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+    <script id="showScreenhost" type="text/html">
+        {{# var srr = d.picUrl; for(var j in srr) { srr[j].name }}
+
+        <span id=p ic_{{srr[j].id}}_{{srr[j].No}}> <img src="http://127.0.0.1:/{{srr[j].name}}" style="width: 80px;height:80px" lay-event="showPic"> </span> {{# } }}
+    </script>
+    <script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script src="../lib/jq-module/zyupload/zyupload-1.0.0.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(function() {
+            // 初始化插件
+            $("#zyupload").zyUpload({
+                width: "650px", // 宽度
+                height: "200px", // 宽度
+                itemWidth: "60px", // 文件项的宽度
+                itemHeight: "20px", // 文件项的高度
+                url: "/upload", // 上传文件的路径
+                fileType: ["pt"], // 上传文件的类型
+                fileSize: 51200000000, // 上传文件的大小
+                multiple: true, // 是否可以多个文件上传
+                dragDrop: true, // 是否可以拖动上传文件
+                tailor: false, // 是否可以裁剪图片
+                del: true, // 是否可以删除文件
+                finishDel: true, // 是否在上传文件完成后删除预览
+                /* 外部获得的回调接口 */
+                onSelect: function(selectFiles, allFiles) { // 选择文件的回调方法  selectFile:当前选中的文件  allFiles:还没上传的全部文件
+                    console.info("当前选择了以下文件：");
+                    console.info(selectFiles);
+                },
+                onDelete: function(file, files) { // 删除一个文件的回调方法 file:当前删除的文件  files:删除之后的文件
+                    console.info("当前删除了此文件：");
+                    console.info(file.name);
+                },
+                onSuccess: function(file, response) { // 文件上传成功的回调方法
+                    console.info("模型验证成功！");
+                    console.info(file.name);
+                    console.info("验证结果为：");
+                    console.info(response);
+                    $("#uploadInf").append("<p>模型验证成功！验证结果为：" + response + "</p>");
+                },
+                onFailure: function(file, response) { // 文件上传失败的回调方法
+                    console.info("此文件上传失败：");
+                    console.info(file.name);
+                },
+                onComplete: function(response) { // 上传完成的回调方法
+                    console.info("文件上传完成");
+                    console.info(response);
+                }
+            });
+
+        });
+    </script>
+
+    <script>
+        layui.use(['form', 'table'], function() {
+            var $ = layui.jquery,
+                form = layui.form,
+                table = layui.table;
+
+            table.render({
+                elem: '#currentTableId',
+                //url: '../api/init4.json',
+                url: '/get/coor',
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [
+                    [
+                        //{type: "checkbox", width: 50},
+                        {
+                            field: 'frame',
+                            width: 180,
+                            title: '视频ID',
+                            sort: true
+                        }, {
+                            field: 'mode_name',
+                            width: 180,
+                            title: '模型名称'
+                        },
+                        // {field: 'picUrl', width:180,title: '图片链接', align: "center", templet: function (d) {
+                        //     return '<span id= pic_' + d.id + '><img src="' +"http://127.0.0.1:"+ d.picUrl + '" style="width: 40px" lay-event="showPic" > </span>'
+                        //         }
+                        // },
+
+                        {
+                            field: 'loc',
+                            width: 800,
+                            title: '识别结果',
+                            sort: true
+                        }
+
+                        // {field: 'wealth', width: 135, title: '财富', sort: true},
+                        // {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
+                    ]
+                ],
+                limits: [5, 10, 20, 30],
+                limit: 10,
+                //count:20,
+                page: true
+                    // skin: 'line'
+                    // parseData:function (res){
+                    //     return{
+                    //         "code":res.code,
+                    //         "msg":res.msg,
+                    //         "count":res.count,
+                    //         "data":res.data
+                    //     };
+                    // }
+            });
+
+            // 监听搜索操作
+            form.on('submit(data-search-btn)', function(data) {
+                var result = JSON.stringify(data.field);
+                layer.alert(result, {
+                    title: '最终的搜索信息'
+                });
+
+                //执行搜索重载
+                table.reload('currentTableId', {
+                    page: {
+                        curr: 1
+                    },
+                    where: {
+                        searchParams: result
+                    }
+                }, 'data');
+
+                return false;
+            });
+
+            /**
+             * toolbar监听事件
+             */
+
+
+            // table.on('toolbar(currentTableFilter)', function (obj) {
+            //     console.log("add action prepare")
+            //     if (obj.event === 'add') {  // 监听添加操作
+            //         console.log("add start")
+            //         var index = layer.open({
+            //             title: '添加用户',
+            //             type: 2,
+            //             shade: 0.2,
+            //             maxmin:true,
+            //             shadeClose: true,
+            //             area: ['100%', '100%'],
+            //             content: '../page/table/add.html',
+            //         });
+            //         $(window).on("resize", function () {
+            //             layer.full(index);
+            //         });
+            //     } else if (obj.event === 'delete') {  // 监听删除操作
+            //         var checkStatus = table.checkStatus('currentTableId')
+            //             , data = checkStatus.data;
+            //         layer.alert(JSON.stringify(data));
+            //     }
+            // });
+            table.on('toolbar(currentTableFilter)', function(obj) {
+                console.log("showpic action prepare");
+                var data = obj.data;
+                console.log('#pic_' + data.id + '_' + data.picUrl.No);
+                if (obj.event === "showPic") {
+                    layer.photos({
+
+                        photos: '#pic_' + data.id + '_' + data.picUrl.No,
+                        //0-6的选择，指定弹出图片动画类型，默认随机
+                        anim: 5
+                    });
+                }
+            });
+            //监听表格复选框选择
+            table.on('checkbox(currentTableFilter)', function(obj) {
+                console.log(obj)
+            });
+
+            table.on('tool(currentTableFilter)', function(obj) {
+                var data = obj.data;
+                if (obj.event === 'edit') {
+
+                    var index = layer.open({
+                        title: '编辑用户',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin: true,
+                        shadeClose: true,
+                        area: ['100%', '100%'],
+                        content: '../page/table/edit.html',
+                    });
+                    $(window).on("resize", function() {
+                        layer.full(index);
+                    });
+                    return false;
+                } else if (obj.event === 'delete') {
+                    layer.confirm('真的删除行么', function(index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                } else if (obj.event === "showPic") {
+                    var srr = data.picUrl;
+                    for (var i in srr) {
+                        console.log('#pic_' + data.id + '_' + srr[i].No);
+                        layer.photos({
+                            photos: '#pic_' + data.id + '_' + srr[i].No,
+                            //0-6的选择，指定弹出图片动画类型，默认随机
+                            anim: 5
+                        });
+                    }
+
+                }
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
