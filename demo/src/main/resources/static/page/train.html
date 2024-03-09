@@ -66,21 +66,19 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">选择数据集</label>
                     <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
-                        <select name="datasetName" style="margin-left: 0;margin-top: 0">
-                        <option value=""></option>
-                        <option value="ETH" selected="">UCF101</option>
-                        <option value="Hotel">Kinetics</option>
-                        <option value="Univ">Something-SomethingV1</option>
+                        <select name="datasetsName" style="margin-left: 0;margin-top: 0">
+                        <option value="ucf" selected="">UCF101</option>
+                        <option value="kin">Kinetics</option>
+                        <option value="som">Something-SomethingV1</option>
                     </select>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">选择采样帧数T</label>
                     <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
-                        <select name="datasetName" style="margin-left: 0;margin-top: 0">
-                        <option value=""></option>
-                        <option value="ETH" selected="">T=8</option>
-                        <option value="Hotel">T=16</option>
+                        <select name="selectT" style="margin-left: 0;margin-top: 0">
+                        <option value="eig" selected="">T=8</option>
+                        <option value="six">T=16</option>
                         <!-- <option value="Univ">Something-SomethingV1</option> -->
                     </select>
                     </div>
@@ -88,54 +86,49 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">选择ResNet</label>
                     <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
-                        <select name="datasetName" style="margin-left: 0;margin-top: 0">
-                        <option value=""></option>
-                        <option value="ETH" selected="">ResNet50</option>
-                        <option value="Hotel">ResNet101</option>
+                        <select name="selectResnet" style="margin-left: 0;margin-top: 0">
+                        <option value="resf" selected="">ResNet50</option>
+                        <option value="reso">ResNet101</option>
                     </select>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">选择测试方式</label>
                     <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
-                        <select name="datasetName" style="margin-left: 0;margin-top: 0">
-                        <option value=""></option>
-                        <option value="ETH" selected="">1-clip and center-crop</option>
-                        <option value="Hotel">10-clip and 3-crop</option>
+                        <select name="selecttest" style="margin-left: 0;margin-top: 0">
+                        <option value="center" selected="">1-clip and center-crop</option>
+                        <option value="three">10-clip and 3-crop</option>
                     </select>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">选择batch_size</label>
                     <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
-                        <select name="datasetName" style="margin-left: 0;margin-top: 0">
-                        <option value=""></option>
-                        <option value="ETH">8</option>
-                        <option value="Hotel" selected="">16</option>
-                        <option value="ETH">24</option>
-                        <option value="Hotel">32</option>
+                        <select name="batchsize" style="margin-left: 0;margin-top: 0">
+                        <option value="eight">8</option>
+                        <option value="six" selected="">16</option>
+                        <option value="for">24</option>
+                        <option value="two">32</option>
                     </select>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">选择num_epochs</label>
                     <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
-                        <select name="datasetName" style="margin-left: 0;margin-top: 0">
-                        <option value=""></option>
-                        <option value="ETH">20</option>
-                        <option value="Hotel"selected="">50</option>
-                        <option value="ETH">80</option>
-                        <option value="Hotel">100</option>
+                        <select name="epochs" style="margin-left: 0;margin-top: 0">
+                        <option value="twoo">20</option>
+                        <option value="fiveo"selected="">50</option>
+                        <option value="eight0">80</option>
+                        <option value="teno">100</option>
                     </select>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">选择优化器</label>
                     <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
-                        <select name="datasetName" style="margin-left: 0;margin-top: 0">
-                        <option value=""></option>
-                        <option value="ETH">SGD</option>
-                        <option value="Hotel" selected="">Adam</option>
+                        <select name="sgdoradam" style="margin-left: 0;margin-top: 0">
+                        <option value="sgd">SGD</option>
+                        <option value="adam" selected="">Adam</option>
 
                     </select>
                     </div>
@@ -144,12 +137,12 @@
                     <label class="layui-form-label">选择显卡数量</label>
                     <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
                         <select name="gpu_nums" style="margin-left: 0;margin-top: 0">
-                        <option value="1" selected="">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
+                        <option value="on" selected="">1</option>
+                        <option value="tw">2</option>
+                        <option value="th">3</option>
+                        <option value="fo">4</option>
+                        <option value="fi">5</option>
+                        <option value="si">6</option>
                     </select>
                     </div>
                 </div>
