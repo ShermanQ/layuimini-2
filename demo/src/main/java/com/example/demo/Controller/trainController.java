@@ -32,6 +32,8 @@ public class trainController {
         obj.setPeople_name(map.get("peopleName"));
         obj.setPhone(map.get("phone"));
         obj.setDataset_name(map.get("datasetName"));
+        obj.setSelectT(map.get("selectT"));
+
         obj.setDate(map.get("date"));
         obj.setGpu_nums(Integer.parseInt(map.get("gpu_nums")));
         obj.setMail(map.get("mail"));

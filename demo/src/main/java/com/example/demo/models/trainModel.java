@@ -1,5 +1,8 @@
 package com.example.demo.models;
 
+import lombok.Data;
+
+@Data
 public class trainModel {
     private Integer id;
 
@@ -12,6 +15,12 @@ public class trainModel {
     private String date;
 
     private String dataset_name;
+    private String selectT;
+    private String selectResNet;
+    private String selecttest;
+    private String batchsize;
+    private String epochs;
+    private String sgdoradam;
 
     private String mail;
 
