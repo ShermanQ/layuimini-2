@@ -15,53 +15,33 @@
         height: 100px;
         line-height: 100px;
     }
+    
+    #searchInput {
+        width: 150px;
+        height: 30px;
+        font-size: 13px;
+        margin-right: 20px;
+    }
+    
+    #searchButton {
+        width: 50px;
+        height: 30px;
+        font-size: 13px;
+    }
 </style>
 
 <body>
     <div class="layuimini-container">
         <div class="layuimini-main">
 
-            <fieldset class="table-search-fieldset">
-                <legend>包含信息</legend>
-                <div style="margin: 10px 10px 10px 10px">
-                    <form class="layui-form layui-form-pane" action="">
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <label class="layui-form-label">ID</label>
-                                <!--                            <div class="layui-input-inline">-->
-                                <!--                                <input type="text" name="id" autocomplete="off" class="layui-input">-->
-                                <!--                            </div>-->
-                            </div>
-                            <div class="layui-inline">
-                                <label class="layui-form-label">模型名称</label>
-                                <!--                            <div class="layui-input-inline">-->
-                                <!--                                <input type="text" name="mode_name" autocomplete="off" class="layui-input">-->
-                                <!--                            </div>-->
-                            </div>
-                            <div class="layui-inline">
-                                <label class="layui-form-label">数据集名称</label>
-                                <!--                            <div class="layui-input-inline">-->
-                                <!--                                <input type="text" name="dataset_name" autocomplete="off" class="layui-input">-->
-                                <!--                            </div>-->
-                            </div>
-                            <div class="layui-inline">
-                                <label class="layui-form-label">识别结果</label>
-                                <!--                            <div class="layui-input-inline">-->
-                                <!--                                <input type="text" name="dataset_name" autocomplete="off" class="layui-input">-->
-                                <!--                            </div>-->
-                            </div>
-                            <!--                        <div class="layui-inline">-->
-                            <!--                            <button type="submit" class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>-->
-                            <!--                        </div>-->
-                        </div>
-                    </form>
-                </div>
-            </fieldset>
 
             <script type="text/html" id="toolbarDemo">
                 <div class="layui-btn-container">
-                    <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 添加 </button>
-                    <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除 </button>
+                    <input type="text" id="searchInput" placeholder="搜索视频ID">
+                    <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 搜索 </button>
+                    <!-- <button id="searchButton">搜索</button> -->
+                    <ul id="searchResults"></ul>
+
                 </div>
             </script>
 
@@ -102,12 +82,16 @@
                         {
                             field: 'id',
                             width: 180,
-                            title: 'ID',
-                            sort: true
+                            title: '视频ID',
+                            // sort: true
                         }, {
                             field: 'mode_name',
                             width: 180,
                             title: '模型名称'
+                        }, {
+                            field: 'person_id',
+                            width: 180,
+                            title: '人物ID'
                         },
                         // {field: 'picUrl', width:180,title: '图片链接', align: "center", templet: function (d) {
                         //     return '<span id= pic_' + d.id + '><img src="' +"http://127.0.0.1:"+ d.picUrl + '" style="width: 40px" lay-event="showPic" > </span>'
@@ -116,11 +100,11 @@
                         {
                             field: 'dataset_name',
                             width: 180,
-                            title: '数据集名称',
-                            sort: true
+                            title: '识别结果',
+                            // sort: true
                         }, {
                             field: 'picUrl',
-                            title: '识别结果可视化',
+                            title: '可视化',
                             align: "center",
                             templet: '#showScreenhost'
                         }
