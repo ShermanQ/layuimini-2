@@ -25,62 +25,56 @@
             <div id="zyupload" class="zyupload" style="height: 200px;"></div>
         </div>
         <fieldset class="table-search-fieldset">
-            <legend>包含信息</legend>
+            <legend>选择信息</legend>
             <div style="margin: 10px 10px 10px 10px">
                 <form class="layui-form layui-form-pane" action="">
 
                     <div class="layui-form-item">
-                        <div class="layui-inline">
+                        <!-- <div class="layui-inline">
                             <label class="layui-form-label">视频ID</label>
-                            <!--                            <div class="layui-input-inline">-->
-                            <!--                                <input type="text" name="frame" autocomplete="off" class="layui-input">-->
-                            <!--                            </div>-->
+
                         </div>
 
                         <div class="layui-inline">
                             <label class="layui-form-label">模型名称</label>
-                            <!--                            <div class="layui-input-inline">-->
-                            <!--                                <input type="text" name="mode_name" autocomplete="off" class="layui-input">-->
-                            <!--                            </div>-->
+
                         </div>
                         <div class="layui-inline">
                             <label class="layui-form-label">识别结果</label>
-                            <!--                            <div class="layui-input-inline">-->
-                            <!--                                <input type="text" name="mode_name" autocomplete="off" class="layui-input">-->
-                            <!--                            </div>-->
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">选择模型</label>
-                            <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
-                                <select name="datasetName" style="margin-left: 0;margin-top: 0">
+                        </div> -->
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">选择模型</label>
+                        <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
+                            <select name="datasetName" style="margin-left: 0;margin-top: 0">
                                 <option value="">请选择</option>
                                 <option value="ETH"></option>
                                 <option value="Hotel" selected=""></option>
                                 <option value="ETH"></option>
                                 <option value="Hotel"></option>
                             </select>
-                            </div>
                         </div>
-
-
                     </div>
-                </form>
+
+
             </div>
-        </fieldset>
+            </form>
+    </div>
+    </fieldset>
 
-        <script type="text/html" id="toolbarDemo">
-            <div class="layui-btn-container">
-                <!--                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add">选择数据行</button>-->
-                <div class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete">识别结果 </div>
-            </div>
-        </script>
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+            <!--                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add">选择数据行</button>-->
+            <div class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete">开始识别 </div>
+        </div>
+    </script>
 
-        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+    <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
-        <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
-        </script>
+    <script type="text/html" id="currentTableBar">
+        <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+    </script>
 
     </div>
 
@@ -158,12 +152,12 @@
                         //{type: "checkbox", width: 50},
                         {
                             field: 'frame',
-                            width: 180,
+                            width: 200,
                             title: '视频ID',
-                            sort: true
+                            // sort: true
                         }, {
                             field: 'mode_name',
-                            width: 180,
+                            width: 200,
                             title: '模型名称'
                         },
                         // {field: 'picUrl', width:180,title: '图片链接', align: "center", templet: function (d) {
@@ -175,7 +169,7 @@
                             field: 'loc',
                             width: 800,
                             title: '识别结果',
-                            sort: true
+                            // sort: true
                         }
 
                         // {field: 'wealth', width: 135, title: '财富', sort: true},
