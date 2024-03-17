@@ -1,0 +1,35 @@
+{
+  "msg": "",
+  "code": 0,
+  "data": [
+    {
+      "id": 0,
+      "model_name": "graph_transformer",
+      "person_id":1,
+      "result": "This is a person.",
+      "pic_url": "1.jpg"
+    },
+    {
+      "id": 1,
+      "model_name": "graph_transformer",
+      "person_id":1,
+      "result": "This is a person.",
+      "pic_url": "1.jpg"
+    },
+    {
+      "id": 2,
+      "model_name": "graph_transformer",
+      "person_id":1,
+      "result": "This is a person.",
+      "pic_url": "1.jpg"
+    },
+    {
+      "id": 3,
+      "model_name": "graph_transformer",
+      "person_id":1,
+      "result": "This is a person.",
+      "pic_url": "1.jpg"
+    }
+  ],
+  "count": 500
+}
