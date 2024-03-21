@@ -1,0 +1,39 @@
+{
+  "msg": "",
+  "code": 0,
+  "data": [
+    {
+      "id": "example_id_value",
+      "modelName": "example_modelName_value",
+      "date": "example_date_value",
+      "datasetsName": "example_datasetsName_value",
+      "selectT": "example_selectT_value",
+      "selectResNet": "example_selectResNet_value",
+      "selectTest": "example_selectTest_value",
+      "batchSize": "example_batchSize_value",
+      "epochs": "example_epochs_value",
+      "sgdoradam": "example_sgdoradam_value",
+      "gpu_nums": "example_gpu_nums_value",
+      "learningRate": "example_learningRate_value",
+      "mail": "example_mail_value",
+      "state": "example_state_value"
+    },
+    {
+      "id": "example_id_value",
+      "modelName": "example_modelName_value",
+      "date": "example_date_value",
+      "datasetsName": "example_datasetsName_value",
+      "selectT": "example_selectT_value",
+      "selectResNet": "example_selectResNet_value",
+      "selectTest": "example_selectTest_value",
+      "batchSize": "example_batchSize_value",
+      "epochs": "example_epochs_value",
+      "sgdoradam": "example_sgdoradam_value",
+      "gpu_nums": "example_gpu_nums_value",
+      "learningRate": "example_learningRate_value",
+      "mail": "example_mail_value",
+      "state": "example_state_value"
+    }
+  ],
+  "count": 500
+}
