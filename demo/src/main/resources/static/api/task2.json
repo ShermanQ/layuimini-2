@@ -1,35 +1,27 @@
 {
-  "msg": "",
-  "code": 0,
-  "data": [
-    {
-      "id": 0,
-      "model_name": "graph_transformer",
-      "person_id":1,
-      "result": "This is a person.",
-      "pic_url": "1.jpg"
-    },
-    {
-      "id": 1,
-      "model_name": "graph_transformer",
-      "person_id":1,
-      "result": "This is a person.",
-      "pic_url": "1.jpg"
-    },
-    {
-      "id": 2,
-      "model_name": "graph_transformer",
-      "person_id":1,
-      "result": "This is a person.",
-      "pic_url": "1.jpg"
-    },
-    {
-      "id": 3,
-      "model_name": "graph_transformer",
-      "person_id":1,
-      "result": "This is a person.",
-      "pic_url": "1.jpg"
-    }
-  ],
-  "count": 500
+    "msg": "",
+    "code": 0,
+    "data": [{
+            "id": 1,
+            "model_name": "ASTFE-Net(1)",
+            "person_id": 10,
+            "result": "person walk",
+            "pic_url": "1.png"
+        },
+        {
+            "id": 1,
+            "model_name": "ASTFE-Net(1)",
+            "person_id": 10,
+            "result": "person stand",
+            "pic_url": "2.png"
+        },
+        {
+            "id": 1,
+            "model_name": "ASTFE-Net(1)",
+            "person_id": 10,
+            "result": "person sit",
+            "pic_url": "3.png"
+        }
+    ],
+    "count": 500
 }
