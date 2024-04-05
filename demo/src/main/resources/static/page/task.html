@@ -13,11 +13,11 @@
 </head>
 
 <body>
-<div class="layuimini-container">
-    <!-- <div class="layuimini-main">
+    <div class="layuimini-container">
+        <!-- <div class="layuimini-main">
         <div id="zyupload" class="zyupload"></div>
     </div> -->
-    <!--
+        <!--
     <fieldset class="table-search-fieldset">
         <legend>搜索信息</legend>
         <div style="margin: 10px 10px 10px 10px">
@@ -55,251 +55,221 @@
         </div>
     </fieldset>
     -->
-    <script type="text/html" id="toolbarDemo">
-        <div class="layui-btn-container">
-            <div class="layui-card-header"><i class="fa fa-warning icon"></i>训练任务队列数据统计</div>
-            <!--                <div class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" >  </div>-->
-            <!--                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除 </button>-->
-        </div>
-    </script>
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+                <div class="layui-card-header"><i class="fa fa-warning icon"></i>训练任务队列数据统计</div>
+                <!--                <div class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" >  </div>-->
+                <!--                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除 </button>-->
+            </div>
+        </script>
 
-    <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
-    <!--        <script type="text/html" id="currentTableBar">-->
-    <!--            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>-->
-    <!--            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>-->
-    <!--        </script>-->
+        <!--        <script type="text/html" id="currentTableBar">-->
+        <!--            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>-->
+        <!--            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>-->
+        <!--        </script>-->
 
-</div>
-</div>
-<script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
-<script src="../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
-<script src="../lib/jq-module/zyupload/zyupload-1.0.0.min.js" charset="utf-8"></script>
-<script type="text/javascript">
-    $(function () {
-        // 初始化插件
-        $("#zyupload").zyUpload({
-            width: "650px", // 宽度
-            height: "400px", // 宽度
-            itemWidth: "60px", // 文件项的宽度
-            itemHeight: "20px", // 文件项的高度
-            url: "/upload", // 上传文件的路径
-            fileType: ["pt"], // 上传文件的类型
-            fileSize: 51200000000, // 上传文件的大小
-            multiple: true, // 是否可以多个文件上传
-            dragDrop: true, // 是否可以拖动上传文件
-            tailor: false, // 是否可以裁剪图片
-            del: true, // 是否可以删除文件
-            finishDel: true, // 是否在上传文件完成后删除预览
-            /* 外部获得的回调接口 */
-            onSelect: function (selectFiles, allFiles) { // 选择文件的回调方法  selectFile:当前选中的文件  allFiles:还没上传的全部文件
-                console.info("当前选择了以下文件：");
-                console.info(selectFiles);
-            },
-            onDelete: function (file, files) { // 删除一个文件的回调方法 file:当前删除的文件  files:删除之后的文件
-                console.info("当前删除了此文件：");
-                console.info(file.name);
-            },
-            onSuccess: function (file, response) { // 文件上传成功的回调方法
-                console.info("模型验证成功！");
-                console.info(file.name);
-                console.info("验证结果为：");
-                console.info(response);
-                $("#uploadInf").append("<p>模型验证成功！验证结果为：" + response + "</p>");
-            },
-            onFailure: function (file, response) { // 文件上传失败的回调方法
-                console.info("此文件上传失败：");
-                console.info(file.name);
-            },
-            onComplete: function (response) { // 上传完成的回调方法
-                console.info("文件上传完成");
-                console.info(response);
-            }
-        });
-
-    });
-</script>
-<script src="../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
-<script>
-    layui.use(['form', 'table'], function () {
-        var $ = layui.jquery,
-            form = layui.form,
-            table = layui.table;
-
-        table.render({
-            elem: '#currentTableId',
-            url: '../api/task.json',
-            toolbar: '#toolbarDemo',
-            defaultToolbar: ['filter', 'exports', 'print', {
-                title: '提示',
-                layEvent: 'LAYTABLE_TIPS',
-                icon: 'layui-icon-tips'
-            }],
-            cols: [
-                [
-                    //{type: "checkbox", width: 50},
-                    {
-                        field: 'id',
-                        width: 180,
-                        title: 'ID',
-                        sort: true
-                    }, {
-                    field: 'modelName',
-                    width: 180,
-                    title: '模型名称'
-                }, {
-                    field: 'date',
-                    title: '预约日期',
-                    minWidth: 180
-                }, {
-                    field: 'datasetsName',
-                    width: 150,
-                    title: '数据集名称',
-                    sort: true
-                }, {
-                    field: 'selectT',
-                    width: 150,
-                    title: '选择采样帧数T',
-                    sort: true
-                }, {
-                    field: 'selectResNet',
-                    width: 150,
-                    title: '选择ResNet',
-                    sort: true
-                }, {
-                    field: 'selectTest',
-                    width: 150,
-                    title: '选择测试方式',
-                    sort: true
-                }, {
-                    field: 'batchSize',
-                    width: 150,
-                    title: '选择batch_size',
-                    sort: true
-                }, {
-                    field: 'epochs',
-                    width: 150,
-                    title: '选择num_epochs',
-                    sort: true
-                }, {
-                    field: 'sgdoradam',
-                    width: 150,
-                    title: '选择优化器',
-                    sort: true
-                }, {
-                    field: 'gpu_nums',
-                    width: 180,
-                    title: '显卡数量',
-                    sort: true
-                }, {
-                    field: 'learningRate',
-                    width: 150,
-                    title: 'learning rate',
-                    sort: true
-                }, {
-                    field: 'mail',
-                    width: 280,
-                    title: '通知邮箱'
-                }, {
-                    field: 'state',
-                    width: 180,
-                    title: '是否完成训练'
+    </div>
+    </div>
+    <script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script src="../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+    <script src="../lib/jq-module/zyupload/zyupload-1.0.0.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(function() {
+            // 初始化插件
+            $("#zyupload").zyUpload({
+                width: "650px", // 宽度
+                height: "400px", // 宽度
+                itemWidth: "60px", // 文件项的宽度
+                itemHeight: "20px", // 文件项的高度
+                url: "/upload", // 上传文件的路径
+                fileType: ["pt"], // 上传文件的类型
+                fileSize: 51200000000, // 上传文件的大小
+                multiple: true, // 是否可以多个文件上传
+                dragDrop: true, // 是否可以拖动上传文件
+                tailor: false, // 是否可以裁剪图片
+                del: true, // 是否可以删除文件
+                finishDel: true, // 是否在上传文件完成后删除预览
+                /* 外部获得的回调接口 */
+                onSelect: function(selectFiles, allFiles) { // 选择文件的回调方法  selectFile:当前选中的文件  allFiles:还没上传的全部文件
+                    console.info("当前选择了以下文件：");
+                    console.info(selectFiles);
                 },
-                    // {field: 'wealth', width: 135, title: '财富', sort: true},
-                    // {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
-                ]
-            ],
-            limits: [5, 10, 20, 30],
-            limit: 10,
-            //count:20,
-            page: true,
-            // skin: 'line'
-            // parseData:function (res){
-            //     return{
-            //         "code":res.code,
-            //         "msg":res.msg,
-            //         "count":res.count,
-            //         "data":res.data
-            //     };
-            // }
-        });
-
-        // 监听搜索操作
-        form.on('submit(data-search-btn)', function (data) {
-            var result = JSON.stringify(data.field);
-            layer.alert(result, {
-                title: '最终的搜索信息'
+                onDelete: function(file, files) { // 删除一个文件的回调方法 file:当前删除的文件  files:删除之后的文件
+                    console.info("当前删除了此文件：");
+                    console.info(file.name);
+                },
+                onSuccess: function(file, response) { // 文件上传成功的回调方法
+                    console.info("模型验证成功！");
+                    console.info(file.name);
+                    console.info("验证结果为：");
+                    console.info(response);
+                    $("#uploadInf").append("<p>模型验证成功！验证结果为：" + response + "</p>");
+                },
+                onFailure: function(file, response) { // 文件上传失败的回调方法
+                    console.info("此文件上传失败：");
+                    console.info(file.name);
+                },
+                onComplete: function(response) { // 上传完成的回调方法
+                    console.info("文件上传完成");
+                    console.info(response);
+                }
             });
 
-            //执行搜索重载
-            table.reload('currentTableId', {
-                page: {
-                    curr: 1
-                },
-                where: {
-                    searchParams: result
-                }
-            }, 'data');
-
-            return false;
         });
+    </script>
+    <script src="../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+    <script>
+        layui.use(['form', 'table'], function() {
+            var $ = layui.jquery,
+                form = layui.form,
+                table = layui.table;
 
-        /**
-         * toolbar监听事件
-         */
-        table.on('toolbar(currentTableFilter)', function (obj) {
-            if (obj.event === 'add') { // 监听添加操作
-                var index = layer.open({
-                    title: '添加用户',
-                    type: 2,
-                    shade: 0.2,
-                    maxmin: true,
-                    shadeClose: true,
-                    area: ['100%', '100%'],
-                    content: '../page/table/add.html',
-                });
-                $(window).on("resize", function () {
-                    layer.full(index);
-                });
-            } else if (obj.event === 'delete') { // 监听删除操作
-                var checkStatus = table.checkStatus('currentTableId'),
-                    data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
-            }
-        });
+            table.render({
+                elem: '#currentTableId',
+                url: '../api/task.json',
+                toolbar: '#toolbarDemo',
+                defaultToolbar: ['filter', 'exports', 'print', {
+                    title: '提示',
+                    layEvent: 'LAYTABLE_TIPS',
+                    icon: 'layui-icon-tips'
+                }],
+                cols: [
+                    [
+                        //{type: "checkbox", width: 50},
+                        {
+                            field: 'id',
+                            width: 180,
+                            title: 'ID',
+                            sort: true
+                        }, {
+                            field: 'modelName',
+                            width: 180,
+                            title: '模型名称'
+                        }, {
+                            field: 'date',
+                            title: '预约日期',
+                            minWidth: 180
+                        }, {
+                            field: 'datasetsName',
+                            width: 150,
+                            title: '数据集名称',
+                            sort: true
+                        }, {
+                            field: 'selectTest',
+                            width: 150,
+                            title: '选择测试方式',
+                            sort: true
+                        }, {
+                            field: 'gpu_nums',
+                            width: 180,
+                            title: '显卡数量',
+                            sort: true
+                        }, {
+                            field: 'mail',
+                            width: 280,
+                            title: '通知邮箱'
+                        }, {
+                            field: 'state',
+                            width: 180,
+                            title: '是否完成训练'
+                        },
+                        // {field: 'wealth', width: 135, title: '财富', sort: true},
+                        // {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
+                    ]
+                ],
+                limits: [5, 10, 20, 30],
+                limit: 10,
+                //count:20,
+                page: true,
+                // skin: 'line'
+                // parseData:function (res){
+                //     return{
+                //         "code":res.code,
+                //         "msg":res.msg,
+                //         "count":res.count,
+                //         "data":res.data
+                //     };
+                // }
+            });
 
-        //监听表格复选框选择
-        table.on('checkbox(currentTableFilter)', function (obj) {
-            console.log(obj)
-        });
-
-        table.on('tool(currentTableFilter)', function (obj) {
-            var data = obj.data;
-            if (obj.event === 'edit') {
-
-                var index = layer.open({
-                    title: '编辑用户',
-                    type: 2,
-                    shade: 0.2,
-                    maxmin: true,
-                    shadeClose: true,
-                    area: ['100%', '100%'],
-                    content: '../page/table/edit.html',
+            // 监听搜索操作
+            form.on('submit(data-search-btn)', function(data) {
+                var result = JSON.stringify(data.field);
+                layer.alert(result, {
+                    title: '最终的搜索信息'
                 });
-                $(window).on("resize", function () {
-                    layer.full(index);
-                });
+
+                //执行搜索重载
+                table.reload('currentTableId', {
+                    page: {
+                        curr: 1
+                    },
+                    where: {
+                        searchParams: result
+                    }
+                }, 'data');
+
                 return false;
-            } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
-                    obj.del();
-                    layer.close(index);
-                });
-            }
-        });
+            });
 
-    });
-</script>
+            /**
+             * toolbar监听事件
+             */
+            table.on('toolbar(currentTableFilter)', function(obj) {
+                if (obj.event === 'add') { // 监听添加操作
+                    var index = layer.open({
+                        title: '添加用户',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin: true,
+                        shadeClose: true,
+                        area: ['100%', '100%'],
+                        content: '../page/table/add.html',
+                    });
+                    $(window).on("resize", function() {
+                        layer.full(index);
+                    });
+                } else if (obj.event === 'delete') { // 监听删除操作
+                    var checkStatus = table.checkStatus('currentTableId'),
+                        data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                }
+            });
+
+            //监听表格复选框选择
+            table.on('checkbox(currentTableFilter)', function(obj) {
+                console.log(obj)
+            });
+
+            table.on('tool(currentTableFilter)', function(obj) {
+                var data = obj.data;
+                if (obj.event === 'edit') {
+
+                    var index = layer.open({
+                        title: '编辑用户',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin: true,
+                        shadeClose: true,
+                        area: ['100%', '100%'],
+                        content: '../page/table/edit.html',
+                    });
+                    $(window).on("resize", function() {
+                        layer.full(index);
+                    });
+                    return false;
+                } else if (obj.event === 'delete') {
+                    layer.confirm('真的删除行么', function(index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                }
+            });
+
+        });
+    </script>
 
 </body>
 

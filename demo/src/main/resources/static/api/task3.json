@@ -1,27 +1,21 @@
 {
-  "msg": "",
-  "code": 0,
-  "data": [
-    {
-      "frame": 3,
-      "model_name": "graph_transformer",
-      "result": "This is test"
-    },
-    {
-      "frame": 3,
-      "model_name": "graph_transformer",
-      "result": "This is test"
-    },
-    {
-      "frame": 3,
-      "model_name": "graph_transformer",
-      "result": "This is test"
-    },
-    {
-      "frame": 3,
-      "model_name": "graph_transformer",
-      "result": "This is test"
-    }
-  ],
-  "count": 4
+    "msg": "",
+    "code": 0,
+    "data": [{
+            "frame": 1,
+            "model_name": "HSTFE-Net(1)",
+            "result": "person walk"
+        },
+        {
+            "frame": 1,
+            "model_name": "HSTFE-Net(1)",
+            "result": "person stand"
+        },
+        {
+            "frame": 1,
+            "model_name": "HSTFE-Net(1)",
+            "result": "person sit"
+        }
+    ],
+    "count": 3
 }
