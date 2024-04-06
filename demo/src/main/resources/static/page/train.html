@@ -13,6 +13,7 @@
         .layui-form-label {
             width: 130px;
         }
+
         /*.layui-input-block{*/
         /*    margin-left: 130px;*/
         /*}*/
@@ -20,122 +21,124 @@
 </head>
 
 <body>
-    <div class="layuimini-container">
-        <div class="layuimini-main">
+<div class="layuimini-container">
+    <div class="layuimini-main">
 
-            <blockquote class="layui-elem-quote layui-text">
-                友情提示：如参数未填写则使用默认值。
-            </blockquote>
+        <blockquote class="layui-elem-quote layui-text">
+            友情提示：如参数未填写则使用默认值。
+        </blockquote>
 
-            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                <legend>行为识别模型训练参数设置</legend>
-            </fieldset>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>行为识别模型训练参数设置</legend>
+        </fieldset>
 
-            <form id="trainForm" class="layui-form" action="/train">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">模型名称</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="modelName" lay-verify="title" autocomplete="off" placeholder="请输入模型名称" class="layui-input" style="width: 16.3%;margin-top: 20px;">
+        <form id="trainForm" class="layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">模型名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="modelName" lay-verify="title" autocomplete="off"
+                           placeholder="请输入模型名称" class="layui-input" style="width: 16.3%;margin-top: 20px;">
+                </div>
+            </div>
+            <!-- <div class="layui-form-item">
+                <label class="layui-form-label">联系人姓名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="peopleName" lay-verify="required" lay-reqtext="联系人姓名是必填项" placeholder="请输入联系人姓名" autocomplete="off" class="layui-input" style="width:25%;margin-top: 20px;">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">验证手机</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
                     </div>
                 </div>
-                <!-- <div class="layui-form-item">
-                    <label class="layui-form-label">联系人姓名</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="peopleName" lay-verify="required" lay-reqtext="联系人姓名是必填项" placeholder="请输入联系人姓名" autocomplete="off" class="layui-input" style="width:25%;margin-top: 20px;">
+            </div> -->
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">预约时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="date" id="date" lay-verify="date" placeholder="yyyy-MM-dd"
+                               autocomplete="off" class="layui-input">
                     </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">验证手机</label>
-                        <div class="layui-input-inline">
-                            <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                </div> -->
-
-                <div class="layui-form-item">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">预约时间</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="date" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="layui-form-item">
-                    <label class="layui-form-label">选择数据集</label>
-                    <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
-                        <select name="datasetsName" style="margin-left: 0;margin-top: 0">
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择数据集</label>
+                <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
+                    <select name="datasetsName" style="margin-left: 0;margin-top: 0">
                         <option value="UCF101" selected="">UCF101</option>
                         <option value="Kinetics">Kinetics</option>
                         <option value="Something-SomethingV1">Something-SomethingV1</option>
                     </select>
-                    </div>
                 </div>
-                <!-- <div class="layui-form-item">
-                    <label class="layui-form-label">选择采样帧数T</label>
-                    <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
-                        <select name="selectT" style="margin-left: 0;margin-top: 0">
-                        <option value="8" selected="">T=8</option>
-                        <option value="16">T=16</option>
-                    </select>
-                    </div>
-                </div> -->
-                <div class="layui-form-item">
-                    <label class="layui-form-label">选择ResNet</label>
-                    <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
-                        <select name="selectResNet" style="margin-left: 0;margin-top: 0">
+            </div>
+            <!-- <div class="layui-form-item">
+                <label class="layui-form-label">选择采样帧数T</label>
+                <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
+                    <select name="selectT" style="margin-left: 0;margin-top: 0">
+                    <option value="8" selected="">T=8</option>
+                    <option value="16">T=16</option>
+                </select>
+                </div>
+            </div> -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择ResNet</label>
+                <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
+                    <select name="selectResNet" style="margin-left: 0;margin-top: 0">
                         <option value="ResNet50" selected="">ResNet50</option>
                         <option value="ResNet101">ResNet101</option>
                     </select>
-                    </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">选择测试方式</label>
-                    <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
-                        <select name="selectTest" style="margin-left: 0;margin-top: 0">
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择测试方式</label>
+                <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
+                    <select name="selectTest" style="margin-left: 0;margin-top: 0">
                         <option value="1-clip and center-crop" selected="">1-clip and center-crop</option>
                         <option value="10-clip and 3-crop">10-clip and 3-crop</option>
                     </select>
-                    </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">选择batch_size</label>
-                    <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
-                        <select name="batchSize" style="margin-left: 0;margin-top: 0">
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择batch_size</label>
+                <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
+                    <select name="batchSize" style="margin-left: 0;margin-top: 0">
                         <option value="8">8</option>
                         <option value="16" selected="">16</option>
                         <option value="24">24</option>
                         <option value="32">32</option>
                     </select>
-                    </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">选择num_epochs</label>
-                    <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
-                        <select name="epochs" style="margin-left: 0;margin-top: 0">
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择num_epochs</label>
+                <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
+                    <select name="epochs" style="margin-left: 0;margin-top: 0">
                         <option value="20">20</option>
-                        <option value="50"selected="">50</option>
+                        <option value="50" selected="">50</option>
                         <option value="80">80</option>
                         <option value="100">100</option>
                     </select>
-                    </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">选择优化器</label>
-                    <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
-                        <select name="sgdoradam" style="margin-left: 0;margin-top: 0">
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择优化器</label>
+                <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
+                    <select name="sgdoradam" style="margin-left: 0;margin-top: 0">
                         <option value="SGD">SGD</option>
                         <option value="Adam" selected="">Adam</option>
 
                     </select>
-                    </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">选择显卡数量</label>
-                    <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
-                        <select name="gpu_nums" style="margin-left: 0;margin-top: 0">
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择显卡数量</label>
+                <div class="layui-input-block" style="width: 16.3%;margin-left: 160px">
+                    <select name="gpu_nums" style="margin-left: 0;margin-top: 0">
                         <option value="1" selected="">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -143,138 +146,150 @@
                         <option value="5">5</option>
                         <option value="6">6</option>
                     </select>
-                    </div>
                 </div>
+            </div>
 
-                <div class="layui-form-item">
-                    <label class="layui-form-label">learning rate</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="learningRate" placeholder="请输入learning rate" autocomplete="off" class="layui-input" style="width:16.3%;margin-top: 20px;">
-                    </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">learning rate</label>
+                <div class="layui-input-block">
+                    <input type="text" name="learningRate" placeholder="请输入learning rate" autocomplete="off"
+                           class="layui-input" style="width:16.3%;margin-top: 20px;">
                 </div>
-                <!-- <input type="file" id="folderInput" webkitdirectory>
-                <input type="file" id="fileInput" multiple> -->
+            </div>
+            <!-- <input type="file" id="folderInput" webkitdirectory>
+            <input type="file" id="fileInput" multiple> -->
 
 
-                <!--                <div class="layui-form-item">-->
-                <!--                    <label class="layui-form-label">选择文件路径</label>-->
-                <!--                    <div class="layui-input-block">-->
-                <!--                        <input type="text" name="file_path" placeholder="选择模型保存路径" autocomplete="off" class="layui-input" style="width:16.3%;margin-top: 20px;">-->
-                <!--                        <input type=button value="选择" οnclick="browseFolder('path')" style="width:5%;margin-top: 20px;">-->
-                <!--                    </div>-->
-                <!--                </div>-->
+            <!--                <div class="layui-form-item">-->
+            <!--                    <label class="layui-form-label">选择文件路径</label>-->
+            <!--                    <div class="layui-input-block">-->
+            <!--                        <input type="text" name="file_path" placeholder="选择模型保存路径" autocomplete="off" class="layui-input" style="width:16.3%;margin-top: 20px;">-->
+            <!--                        <input type=button value="选择" οnclick="browseFolder('path')" style="width:5%;margin-top: 20px;">-->
+            <!--                    </div>-->
+            <!--                </div>-->
 
 
-                <!-- <div class="layui-form-item">
-                    <label class="layui-form-label">模型保存路径</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="file_path" placeholder="请输入模型保存路径" autocomplete="off" class="layui-input" style="width:16.3%;margin-top: 20px;">
-                    </div>
-                </div> -->
-                <div class="layui-form-item">
-                    <label class="layui-form-label">消息通知邮箱</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="mail" lay-verify="required" placeholder="请输入消息通知邮箱地址" autocomplete="off" class="layui-input" style="width:16.3%;margin-top: 20px;">
-                    </div>
+            <!-- <div class="layui-form-item">
+                <label class="layui-form-label">模型保存路径</label>
+                <div class="layui-input-block">
+                    <input type="text" name="file_path" placeholder="请输入模型保存路径" autocomplete="off" class="layui-input" style="width:16.3%;margin-top: 20px;">
                 </div>
-
-                <div class="layui-form-item">
-                    <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
-                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                    </div>
+            </div> -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">消息通知邮箱</label>
+                <div class="layui-input-block">
+                    <input type="text" name="mail" lay-verify="required" placeholder="请输入消息通知邮箱地址"
+                           autocomplete="off" class="layui-input" style="width:16.3%;margin-top: 20px;">
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
     </div>
+</div>
 
-    <script src="../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
-    <script src="../js/lay-module/layuimini/miniTab.js" charset="utf-8"></script>
-    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-    <script>
-        function browseFolder(path) {
-            try {
-                var Message = "\u8bf7\u9009\u62e9\u6587\u4ef6\u5939"; //选择框提示信息
-                var Shell = new ActiveXObject("Shell.Application");
-                var Folder = Shell.BrowseForFolder(0, Message, 64, 17); //起始目录为：我的电脑
-                //var Folder = Shell.BrowseForFolder(0,Message,0); //起始目录为：桌面
-                if (Folder != null) {
-                    Folder = Folder.items(); // 返回 FolderItems 对象
-                    Folder = Folder.item(); // 返回 Folderitem 对象
-                    Folder = Folder.Path; // 返回路径
-                    if (Folder.charAt(Folder.length - 1) != "") {
-                        Folder = Folder + "";
-                    }
-                    document.getElementById(path).value = Folder;
-                    return Folder;
+<script src="../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script src="../js/lay-module/layuimini/miniTab.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    function browseFolder(path) {
+        try {
+            var Message = "\u8bf7\u9009\u62e9\u6587\u4ef6\u5939"; //选择框提示信息
+            var Shell = new ActiveXObject("Shell.Application");
+            var Folder = Shell.BrowseForFolder(0, Message, 64, 17); //起始目录为：我的电脑
+            //var Folder = Shell.BrowseForFolder(0,Message,0); //起始目录为：桌面
+            if (Folder != null) {
+                Folder = Folder.items(); // 返回 FolderItems 对象
+                Folder = Folder.item(); // 返回 Folderitem 对象
+                Folder = Folder.Path; // 返回路径
+                if (Folder.charAt(Folder.length - 1) != "") {
+                    Folder = Folder + "";
                 }
-            } catch (e) {
-                alert(e.message);
+                document.getElementById(path).value = Folder;
+                return Folder;
             }
+        } catch (e) {
+            alert(e.message);
         }
-        layui.use(['form', 'layedit', 'laydate'], function() {
-            var form = layui.form,
-                layer = layui.layer,
-                layedit = layui.layedit,
-                laydate = layui.laydate;
+    }
 
-            //日期
-            laydate.render({
-                elem: '#date'
-            });
-            laydate.render({
-                elem: '#date1'
-            });
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            layedit = layui.layedit,
+            laydate = layui.laydate;
 
-            //创建一个编辑器
-            var editIndex = layedit.build('LAY_demo_editor');
-
-            //自定义验证规则
-            // form.verify({
-            //     title: function (value) {
-            //         if (value.length < 5) {
-            //             return '模型名字至少5个字符';
-            //         }
-            //     }
-            //     , pass: [
-            //         /^[\S]{6,12}$/
-            //         , '密码必须6到12位，且不能出现空格'
-            //     ]
-            //     , content: function (value) {
-            //         layedit.sync(editIndex);
-            //     }
-            // });
-
-            //监听指定开关
-            form.on('switch(switchTest)', function(data) {
-                layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
-                    offset: '6px'
-                });
-                layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
-            });
-
-            //监听提交
-            form.on('submit(demo1)', function(data) {
-                layer.confirm(JSON.stringify(data.field), {
-                    title: '最终的提交信息'
-                }, function() {
-                    layer.alert("提交成功！", function() {
-                        document.getElementById("trainForm").submit();
-                        // window.reload();
-                        layui.miniTab.openNewTabByIframe({
-                            href: "page/task.html",
-                            title: "任务列表",
-                        });
-
-                    });
-                }, function() {
-                    layer.msg("已取消");
-                    return false;
-                });
-                return false;
-            });
+        //日期
+        laydate.render({
+            elem: '#date'
         });
-    </script>
+        laydate.render({
+            elem: '#date1'
+        });
+
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+        //自定义验证规则
+        // form.verify({
+        //     title: function (value) {
+        //         if (value.length < 5) {
+        //             return '模型名字至少5个字符';
+        //         }
+        //     }
+        //     , pass: [
+        //         /^[\S]{6,12}$/
+        //         , '密码必须6到12位，且不能出现空格'
+        //     ]
+        //     , content: function (value) {
+        //         layedit.sync(editIndex);
+        //     }
+        // });
+
+        //监听指定开关
+        form.on('switch(switchTest)', function (data) {
+            layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
+                offset: '6px'
+            });
+            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });
+
+        //监听提交
+        form.on('submit(demo1)', function (data) {
+            layer.confirm(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            }, function () {
+                var formData = data.field
+
+                // 使用 AJAX 提交表单数据
+                $.ajax({
+                    url: '../train',
+                    type: 'POST',
+                    contentType: 'application/json', // 设置请求的Content-Type为JSON
+                    data: JSON.stringify(formData), // 将表单数据序列化为JSON字符串
+                    success: function (response) {
+                        layer.alert("提交成功！", function () {
+                            layui.miniTab.openNewTabByIframe({
+                                href: "page/task.html",
+                                title: "任务列表",
+                            });
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        layer.alert("提交失败：" + error);
+                    }
+                });
+            });
+            return false; // 阻止表单默认提交行为
+        });
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 
 </body>
 
